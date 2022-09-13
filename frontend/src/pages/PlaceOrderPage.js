@@ -6,6 +6,8 @@ import Message from '../components/Message'
 import {createOrder} from '../actions/orderActions'
 
 import  CheckoutSteps from '../components/CheckoutSteps'
+import { ORDER_CREATE_RESET } from '../constants/orderConstants'
+import { USER_DETAILS_RESET } from '../constants/userConstants'
 
 const PlaceOrderPage = ({history}) => {
 
@@ -31,6 +33,8 @@ const PlaceOrderPage = ({history}) => {
     useEffect(()=>{
         if(success){
             history.push(`/order/${order._id}`)
+            dispatch({ type: USER_DETAILS_RESET })
+            dispatch({ type: ORDER_CREATE_RESET })
         }
         // eslint-disable-next-line
     },[history,success])
